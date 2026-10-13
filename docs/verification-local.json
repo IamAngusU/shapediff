@@ -1,0 +1,16 @@
+{
+  "version": "0.1.0a2",
+  "python": "3.13.5",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "tests_passed": 106,
+  "tests_failed": 0,
+  "tests_errored": 0,
+  "statement_coverage_percent": 92.62,
+  "branch_coverage_percent": 84.84,
+  "combined_coverage_percent": 90.16,
+  "coverage_scope": "shapediff.py, measured with coverage.py and 106 standard-library unittest cases",
+  "wheel_build": "success, no runtime dependencies",
+  "wheel_install": "successful isolated local venv smoke test",
+  "profile_capture_and_replay": "verified installed CLI and standalone Python entrypoint",
+  "limitations": "Local Linux Python 3.13.5 test and packaging. No public GitHub CI, Windows or macOS result yet."
+}

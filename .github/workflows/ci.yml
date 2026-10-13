@@ -1,0 +1,59 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python-version: '3.10'
+          - os: ubuntu-latest
+            python-version: '3.14'
+          - os: windows-latest
+            python-version: '3.12'
+          - os: macos-latest
+            python-version: '3.12'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run offline tests
+        run: python -m unittest discover -s tests -v
+      - name: Compare sample responses
+        run: python shapediff.py examples/production.json examples/staging.json --format json --fail-on never
+      - name: Capture a value-free profile
+        run: python shapediff.py profile examples/production.json --output ${{ runner.temp }}/baseline.sdshape --quiet
+      - name: Compare against the captured profile
+        run: python shapediff.py ${{ runner.temp }}/baseline.sdshape examples/staging.json --fail-on never
+      - name: Compare endpoint suite
+        run: python shapediff.py suite examples/baseline.sdsuite examples/current.sdsuite --format json --fail-on never
+
+  package:
+    name: Build and install wheel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Build wheel
+        run: python -m pip wheel . --no-deps --wheel-dir dist
+      - name: Install offline and verify packaged CLI
+        run: python scripts/verify_wheel.py dist

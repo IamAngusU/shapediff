@@ -1,0 +1,27 @@
+{
+  "tool_version": "0.1.0a3",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "dataset": "synthetic stable-shape JSONL with one rank type drift",
+  "documents_per_side": 5000,
+  "repetitions": 8,
+  "bytes_in_original_baseline": 685280,
+  "bytes_in_saved_profile": 4517,
+  "profile_size_reduction_percent": 99.341,
+  "median_seconds": {
+    "capture_from_raw": 0.089796,
+    "compare_two_raw_jsonl": 0.180729,
+    "compare_profile_to_raw_jsonl": 0.097386,
+    "update_profile_with_more_jsonl": 0.103831
+  },
+  "findings": {
+    "errors": 1,
+    "warnings": 0,
+    "infos": 0,
+    "total": 1
+  },
+  "finding_paths": [
+    "user.profile.rank"
+  ],
+  "notes": "Local timing, not a cross-machine or competitor benchmark. Warm-up excluded. Updated profile is reset at the start of each repetition. No raw values retained by saved profile."
+}

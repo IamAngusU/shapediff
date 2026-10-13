@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="78" viewBox="0 0 360 78" role="img" aria-labelledby="title desc">
+  <title id="title">ShapeDiff</title>
+  <desc id="desc">Minimal ShapeDiff monogram and wordmark</desc>
+  <style>
+    .ink { fill: #252d38; }
+    .line { stroke: #252d38; }
+    .muted { fill: #7b8796; }
+    @media (prefers-color-scheme: dark) {
+      .ink { fill: #e9edf2; }
+      .line { stroke: #e9edf2; }
+      .muted { fill: #a8b4c4; }
+    }
+  </style>
+  <rect x="3" y="7" width="64" height="64" rx="19" fill="none" stroke="#b7c1cb" stroke-width="1.5" />
+  <path class="line" d="M27 22c-7 0-10 3-10 10v4c0 3-1 4-4 5 3 1 4 2 4 5v4c0 7 3 10 10 10M43 22c7 0 10 3 10 10v4c0 3 1 4 4 5-3 1-4 2-4 5v4c0 7-3 10-10 10" fill="none" stroke-width="2.8" stroke-linecap="round" />
+  <path d="M30 42l4 4 9-11" fill="none" stroke="#5b8677" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="84" y="44" class="ink" font-family="Inter, Arial, sans-serif" font-weight="650" font-size="32" letter-spacing="-1.15">ShapeDiff</text>
+  <text x="85" y="63" class="muted" font-family="Inter, Arial, sans-serif" font-weight="500" font-size="12" letter-spacing=".6">JSON CONTRACT EVIDENCE</text>
+</svg>

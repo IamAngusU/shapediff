@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shapediff"
+version = "0.1.0a3"
+description = "Evidence-aware JSON API response diffing without a schema"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Angus Uelsmann" }]
+keywords = ["json", "api", "regression", "contract", "diff", "cli", "schema-drift"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Testing",
+]
+dependencies = []
+
+[project.scripts]
+shapediff = "shapediff:main"
+
+[project.urls]
+Repository = "https://github.com/IamAngusU/shapediff"
+Issues = "https://github.com/IamAngusU/shapediff/issues"
+
+[tool.setuptools]
+py-modules = ["shapediff"]

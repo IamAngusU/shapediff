@@ -1,0 +1,27 @@
+{
+  "tool_version": "0.1.0a2",
+  "python": "3.13.5",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "dataset": "synthetic stable-shape JSONL with one rank type drift",
+  "documents_per_side": 10000,
+  "repetitions": 5,
+  "bytes_in_original_baseline": 1362780,
+  "bytes_in_saved_profile": 4518,
+  "profile_size_reduction_percent": 99.668,
+  "median_seconds": {
+    "capture_from_raw": 0.165087,
+    "compare_two_raw_jsonl": 0.327184,
+    "compare_profile_to_raw_jsonl": 0.165097,
+    "update_profile_with_more_jsonl": 0.162865
+  },
+  "findings": {
+    "errors": 1,
+    "warnings": 0,
+    "infos": 0,
+    "total": 1
+  },
+  "finding_paths": [
+    "user.profile.rank"
+  ],
+  "notes": "Local timing, not a cross-machine or competitor benchmark. Warm-up excluded. Updated profile is reset at the start of each repetition. No raw values retained by saved profile."
+}

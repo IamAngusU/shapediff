@@ -1,0 +1,20 @@
+{
+  "tool_version": "0.1.0a3",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "cases_per_side": 100,
+  "documents_per_case_per_side": 100,
+  "documents_total": 20000,
+  "input_bytes": 1178013,
+  "repetitions": 8,
+  "median_seconds": 0.302896,
+  "min_seconds": 0.284842,
+  "max_seconds": 0.337661,
+  "documents_per_second": 66029,
+  "findings": {
+    "errors": 3,
+    "warnings": 0,
+    "infos": 0,
+    "total": 3
+  }
+}
