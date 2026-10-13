@@ -1,12 +1,14 @@
 <p align="center"><img src="docs/assets/shapediff-wordmark.svg" width="360" alt="ShapeDiff"></p>
 
-<p align="center"><a href="https://github.com/IamAngusU/shapediff/actions/workflows/ci.yml"><img src="https://github.com/IamAngusU/shapediff/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI-Status"></a> <a href="https://github.com/IamAngusU/shapediff/releases/tag/v0.1.0a3"><img src="https://img.shields.io/badge/release-0.1.0a3-blue" alt="Release 0.1.0a3"></a></p>
+<p align="center"><a href="https://github.com/angusu-de/shapediff-ci/actions/workflows/ci.yml"><img src="https://github.com/angusu-de/shapediff-ci/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI-Spiegel"></a> <a href="https://github.com/IamAngusU/shapediff/releases/tag/v0.1.0a3"><img src="https://img.shields.io/badge/release-0.1.0a3-blue" alt="Release 0.1.0a3"></a></p>
 
 # JSON-Antworten vergleichen, ohne ein Schema zu pflegen
 
 ShapeDiff erkennt strukturelle Änderungen zwischen beobachteten API-Antworten. Geänderte Werte wie IDs, Namen oder Zeitstempel lösen keinen Befund aus, solange ihre JSON-Typen gleich bleiben. Fehlende Felder, Typwechsel und neue `null`-Werte können dagegen bestehende Clients beeinträchtigen.
 
 **Lokal, ohne Account, ohne Telemetrie, ohne Laufzeit-Abhängigkeiten.** Benötigt Python ab 3.10.
+
+Das CI-Badge gehört zum [öffentlichen Spiegel](https://github.com/angusu-de/shapediff-ci), der denselben Commit auf Linux, Windows und macOS prüft. GitHub blockiert Actions auf `IamAngusU` derzeit wegen eines Abrechnungsproblems. [Messungen und geprüfter Commit](docs/metrics.md) sind dokumentiert.
 
 ## Direkt starten
 

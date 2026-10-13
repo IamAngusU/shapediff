@@ -30,5 +30,14 @@
     "detected_regressions": 3,
     "source": "benchmark-suite-local.json"
   },
-  "not_verified_here": ["public GitHub Actions run", "macOS execution", "Linux execution of 0.1.0a3"]
+  "ci_mirror": {
+    "repository": "angusu-de/shapediff-ci",
+    "run_id": 38393567734,
+    "source_commit": "3b42dd3fe5e154e17d54215559881bb6afc83422",
+    "jobs_passed": 5,
+    "jobs_failed": 0,
+    "platforms": ["Linux", "Windows", "macOS"],
+    "wheel_install": "passed"
+  },
+  "owner_repository_actions": "jobs blocked before execution by GitHub account billing issue"
 }

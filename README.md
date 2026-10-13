@@ -6,7 +6,7 @@
 <p align="center">Find API shape regressions without maintaining a schema.</p>
 
 <p align="center">
-  <a href="https://github.com/IamAngusU/shapediff/actions/workflows/ci.yml"><img src="https://github.com/IamAngusU/shapediff/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
+  <a href="https://github.com/angusu-de/shapediff-ci/actions/workflows/ci.yml"><img src="https://github.com/angusu-de/shapediff-ci/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI mirror status"></a>
   <a href="https://github.com/IamAngusU/shapediff/releases/tag/v0.1.0a3"><img src="https://img.shields.io/badge/release-0.1.0a3-blue" alt="Release 0.1.0a3"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT license"></a>
 </p>
@@ -25,6 +25,8 @@
 ShapeDiff compares **observed JSON API response structures**. IDs, timestamps, names and every other ordinary value can change without producing a finding. Types, missing fields and changes inside nested objects or arrays are checked.
 
 It runs locally, reads files or stdin, and has **no runtime dependencies**, account, telemetry or network calls.
+
+The CI badge reports the [public mirror](https://github.com/angusu-de/shapediff-ci), which runs the same source commit on Linux, Windows and macOS. GitHub currently blocks Actions jobs on `IamAngusU` because of an account billing issue; [verification details](docs/metrics.md) identify the tested revision.
 
 ```text
 $ python3 shapediff.py examples/production.json examples/staging.json
