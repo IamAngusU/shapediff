@@ -10,6 +10,10 @@ on:
         description: Upload the verified distributions to PyPI
         default: false
         type: boolean
+      verify_registry:
+        description: Check an already published version without uploading again
+        default: false
+        type: boolean
 permissions:
   contents: read
 concurrency:
@@ -66,3 +70,40 @@ jobs:
           path: dist
       - name: Upload through PyPI Trusted Publishing
         uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33
+  registry:
+    name: Public PyPI / Python ${{ matrix.python-version }}
+    needs: [verify, publish]
+    if: >-
+      !cancelled() && github.repository == 'angusu-de/shapediff-ci' &&
+      needs.verify.result == 'success' &&
+      (needs.publish.result == 'success' || (!inputs.publish && inputs.verify_registry))
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.14']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: publisher
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: IamAngusU/shapediff
+          ref: ${{ inputs.release_tag }}
+          path: source
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: pypi-distributions
+          path: dist
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Verify public bytes and a clean registry installation
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: >-
+          python publisher/scripts/verify_registry_release.py
+          --version "${RELEASE_TAG#v}" --expected-dir dist --examples-dir source/examples

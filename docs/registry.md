@@ -22,6 +22,17 @@ Dispatch `Publish reviewed PyPI release` on `main` with an existing canonical
 GitHub release tag. With `publish=false`, it verifies without uploading. With
 `publish=true`, it uploads after verification through OIDC.
 
+After an upload, read-only jobs on Python 3.10 and 3.14 compare the public PyPI
+metadata and downloaded wheel/sdist against the reviewed artifacts. Each job
+then installs the pinned version from PyPI in a fresh environment and checks
+the CLI version and the three expected endpoint-suite regressions. The registry
+jobs receive no publication token or OIDC permission. They fail if files differ
+or the installed command does not work.
+
+To recheck an existing publication without uploading it again, dispatch the
+same tag with `publish=false` and `verify_registry=true`. Ordinary dry runs leave
+`verify_registry=false`, so a release can be checked before it exists on PyPI.
+
 Verification checks the tag against package metadata and the canonical Git ref,
 downloads the exact wheel and sdist from that GitHub release, checks their
 published SHA-256 hashes and compares packaged Python code with the tagged
