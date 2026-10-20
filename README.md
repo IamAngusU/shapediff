@@ -45,14 +45,14 @@ The summary is printed to stderr; findings are printed to stdout. Exit code `1` 
 
 ## Get running
 
-**Python 3.10 or newer.** The [GitHub release](https://github.com/IamAngusU/shapediff/releases/tag/v0.1.0a4) offers an installable wheel and a standalone `shapediff.py`. There are no runtime packages to resolve. `pipx` installs the command into its own environment:
+**Python 3.10 or newer.** Install from [PyPI](https://pypi.org/project/shapediff/0.1.0a4/), with no runtime dependencies. `pipx` installs the command into its own environment:
 
 ```sh
-pipx install 'https://github.com/IamAngusU/shapediff/releases/download/v0.1.0a4/shapediff-0.1.0a4-py3-none-any.whl'
+pipx install shapediff==0.1.0a4
 shapediff production.json staging.json
 ```
 
-Install [pipx](https://pipx.pypa.io/stable/installation/) first if needed. For a project virtual environment, use `python -m pip install` with the same wheel URL. The release includes `SHA256SUMS.txt` for checking downloaded artifacts. Use a release URL in automation so the installed version stays fixed.
+Install [pipx](https://pipx.pypa.io/stable/installation/) first if needed. In a project virtual environment, use `python -m pip install shapediff==0.1.0a4`. This is an alpha release; the explicit version also keeps automation reproducible. The [GitHub release](https://github.com/IamAngusU/shapediff/releases/tag/v0.1.0a4) provides the identical wheel and source archive, `SHA256SUMS.txt`, and a standalone `shapediff.py`. [Publication and verification](docs/registry.md).
 
 The single-file option needs no package installation:
 

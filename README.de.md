@@ -19,14 +19,14 @@ ShapeDiff erkennt strukturelle Änderungen zwischen beobachteten API-Antworten. 
 
 ## Direkt starten
 
-Das [GitHub-Release](https://github.com/IamAngusU/shapediff/releases/tag/v0.1.0a4) enthält ein Wheel und die einzelne Datei `shapediff.py`. Mit [pipx](https://pipx.pypa.io/stable/installation/) landet der Befehl in einer eigenen Umgebung:
+Installiere ShapeDiff direkt von [PyPI](https://pypi.org/project/shapediff/0.1.0a4/). Mit [pipx](https://pipx.pypa.io/stable/installation/) landet der Befehl in einer eigenen Umgebung:
 
 ```sh
-pipx install 'https://github.com/IamAngusU/shapediff/releases/download/v0.1.0a4/shapediff-0.1.0a4-py3-none-any.whl'
+pipx install shapediff==0.1.0a4
 shapediff production.json staging.json
 ```
 
-Für eine Projektumgebung funktioniert `python -m pip install` mit derselben Wheel-URL. Die Release-Datei `SHA256SUMS.txt` enthält SHA-256-Prüfsummen. Es werden keine Laufzeitpakete nachgeladen.
+Für eine Projektumgebung funktioniert `python -m pip install shapediff==0.1.0a4`. Es werden keine Laufzeitpakete nachgeladen. Dies ist eine Alpha-Version; die feste Versionsangabe macht auch CI-Installationen reproduzierbar. Das [GitHub-Release](https://github.com/IamAngusU/shapediff/releases/tag/v0.1.0a4) enthält dasselbe Wheel und Quellarchiv, SHA-256-Prüfsummen und die einzelne Datei `shapediff.py`. [Veröffentlichung und Prüfung](docs/registry.md).
 
 Alternativ kannst du die einzelne Quelldatei ohne Paketinstallation starten:
 
