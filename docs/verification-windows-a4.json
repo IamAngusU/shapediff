@@ -1,0 +1,49 @@
+{
+  "platform": "Windows x64",
+  "scope": "115 offline tests per Python minor version; no new performance claims",
+  "source_sha256": "51e97ea445ea3c9d8b8c597ae9754e0f72ebd6ef84b7b7fea99c92e155b879f4",
+  "runs": [
+    {
+      "python": "Python 3.10.22",
+      "command": [
+        "C:\\Users\\Angus Velsmann\\AppData\\Roaming\\uv\\python\\cpython-3.10.22-windows-x86_64-none\\python.exe"
+      ],
+      "exit_code": 0,
+      "result": "----------------------------------------------------------------------\nRan 115 tests in 2.055s\n\nOK"
+    },
+    {
+      "python": "Python 3.13.16",
+      "command": [
+        "C:\\Users\\Angus Velsmann\\AppData\\Roaming\\uv\\python\\cpython-3.13.16-windows-x86_64-none\\python.exe"
+      ],
+      "exit_code": 0,
+      "result": "----------------------------------------------------------------------\nRan 115 tests in 2.018s\n\nOK"
+    },
+    {
+      "python": "Python 3.14.8",
+      "command": [
+        "C:\\Users\\Angus Velsmann\\AppData\\Roaming\\uv\\python\\cpython-3.14.8-windows-x86_64-none\\python.exe"
+      ],
+      "exit_code": 0,
+      "result": "----------------------------------------------------------------------\nRan 115 tests in 2.141s\n\nOK"
+    },
+    {
+      "python": "Python 3.11.9",
+      "command": [
+        "py",
+        "-3.11"
+      ],
+      "exit_code": 0,
+      "result": "----------------------------------------------------------------------\nRan 115 tests in 1.753s\n\nOK"
+    },
+    {
+      "python": "Python 3.12.10",
+      "command": [
+        "py",
+        "-3.12"
+      ],
+      "exit_code": 0,
+      "result": "----------------------------------------------------------------------\nRan 115 tests in 1.914s\n\nOK"
+    }
+  ]
+}

@@ -21,7 +21,7 @@ import tempfile
 from typing import Any, Iterable, Sequence
 from urllib.parse import urlsplit
 
-__version__ = "0.1.0a3"
+__version__ = "0.1.0a4"
 
 ERROR = "ERROR"
 WARN = "WARN"

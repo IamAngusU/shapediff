@@ -1,0 +1,7 @@
+$ python shapediff.py examples/production.json examples/staging.json
+
+ERROR  user.email   missing
+ERROR  user.id      number -> string
+INFO   user.avatar  added
+
+shapediff: 2 breaking, 0 warning, 1 info  |  samples 1 -> 1

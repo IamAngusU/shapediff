@@ -1,6 +1,12 @@
 # Changelog
 
-## 0.1.0a3 (unreleased)
+## 0.1.0a4
+
+- Verified all 115 tests on Windows with Python 3.10, 3.11, 3.12, 3.13 and 3.14; expanded the hosted matrix to cover every declared minor version and the Windows minimum.
+- Added a registry-safe package README, wheel/sdist metadata validation and a tag-gated PyPI Trusted Publishing workflow. Registry publication awaits account setup.
+- Added real CLI output, adaptive repository/language badges, a local stack marquee and an evidence-based alternatives guide in English and German.
+
+## 0.1.0a3
 
 - Added `shapediff suite` for named response contracts. Each case compares status, explicitly selected headers, and JSON body samples or saved profiles without pooling unrelated endpoints.
 - Status and tracked header changes now produce directional findings; header values are never copied into reports.
@@ -8,7 +14,7 @@
 - Profile loading now rejects stored map layouts and ignored fields that contradict the saved processing rules.
 - Added endpoint-suite integration and adversarial profile tests, examples, and a reproducible suite benchmark.
 
-## 0.1.0a2 (unreleased)
+## 0.1.0a2
 
 - Added versioned `.sdshape` observation profiles that omit response scalar values and source byte lengths.
 - Added incremental `profile --update` to accumulate baselines without retaining previous raw responses.
@@ -18,7 +24,7 @@
 - Corrected integer-subtype compatibility when `--strict-integers` is enabled.
 - Extended offline tests, profile round-trip fixtures, corrupted-input checks and reproducible benchmark coverage.
 
-## 0.1.0a1 (unreleased candidate)
+## 0.1.0a1
 
 - Response-only structural comparison with ERROR/WARN/INFO findings.
 - Support for JSON, JSONL, NDJSON, directories and standard input.

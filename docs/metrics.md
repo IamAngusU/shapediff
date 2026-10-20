@@ -15,4 +15,17 @@ The comparison timings cover parsing and shape inference, not network requests. 
 
 The local baseline-to-current direct comparison measured 0.258 s versus 0.254 s median with interleaved runs on identical fixtures. That small difference is within normal local variability; no speedup is claimed.
 
-See [benchmark methodology](benchmark.md) for reproduction commands and measurement limits. GitHub blocks Actions jobs on `IamAngusU` because of an account billing issue. The [public CI mirror](https://github.com/angusu-de/shapediff-ci/actions/workflows/ci.yml) runs tests on Linux, Windows and macOS and verifies an installed wheel on Linux. Its first passing [five-job run](https://github.com/angusu-de/shapediff-ci/actions/runs/38393567734) tested source commit `3b42dd3fe5e154e17d54215559881bb6afc83422`, identical to the then-published commit in `IamAngusU/shapediff`. Compare the commit SHA in both repositories for later runs. The README badge shows the mirror's latest `main` result; it is not a status claim for the blocked workflow on `IamAngusU`.
+See [benchmark methodology](benchmark.md) for reproduction commands and measurement limits. [Runner account context](https://github.com/IamAngusU/IamAngusU/blob/main/ci.md). The [public CI mirror](https://github.com/angusu-de/shapediff-ci/actions/workflows/ci.yml) runs tests on Linux, Windows and macOS and verifies an installed wheel on Linux. Its first passing [five-job run](https://github.com/angusu-de/shapediff-ci/actions/runs/38393567734) tested source commit `3b42dd3fe5e154e17d54215559881bb6afc83422`, identical to the then-published commit in `IamAngusU/shapediff`. Compare the commit SHA in both repositories for later runs. The README badge shows the mirror's latest `main` result; it is not a status claim for the blocked workflow on `IamAngusU`.
+
+## Python compatibility verification for 0.1.0a4
+
+All 115 offline tests passed on Windows x64 with CPython 3.10.22, 3.11.9,
+3.12.10, 3.13.16 and 3.14.8. [Per-runtime output and source hash](verification-windows-a4.json).
+The CI matrix now also covers every Python minor from 3.10 through 3.14 on
+Linux, the minimum 3.10 and 3.12 on Windows, and 3.12 on macOS, plus an installed
+wheel check. The mirror rejects a SHA that differs from canonical main.
+The earlier benchmarks above retain their original environments and versions.
+
+The README image renders the actual stdout/stderr from the included example
+command; [plain transcript](cli-output.txt). It is a presentation of CLI output,
+not a screenshot of a user's terminal or a performance benchmark.

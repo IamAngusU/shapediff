@@ -20,7 +20,15 @@ jobs:
           - os: ubuntu-latest
             python-version: '3.10'
           - os: ubuntu-latest
+            python-version: '3.11'
+          - os: ubuntu-latest
+            python-version: '3.12'
+          - os: ubuntu-latest
+            python-version: '3.13'
+          - os: ubuntu-latest
             python-version: '3.14'
+          - os: windows-latest
+            python-version: '3.10'
           - os: windows-latest
             python-version: '3.12'
           - os: macos-latest
@@ -32,6 +40,8 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Verify canonical source in the public mirror
+        run: python scripts/check_mirror.py
       - name: Run offline tests
         run: python -m unittest discover -s tests -v
       - name: Compare sample responses
@@ -53,6 +63,8 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.12'
+      - name: Verify canonical source in the public mirror
+        run: python scripts/check_mirror.py
       - name: Build wheel
         run: python -m pip wheel . --no-deps --wheel-dir dist
       - name: Install offline and verify packaged CLI

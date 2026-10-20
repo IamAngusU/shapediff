@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "shapediff"
-version = "0.1.0a3"
+version = "0.1.0a4"
 description = "Evidence-aware JSON API response diffing without a schema"
-readme = "README.md"
+readme = "README.pypi.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "Angus Uelsmann" }]

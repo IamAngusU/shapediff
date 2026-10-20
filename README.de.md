@@ -1,6 +1,13 @@
 <p align="center"><img src="docs/assets/shapediff-wordmark.svg" width="360" alt="ShapeDiff"></p>
 
-<p align="center"><a href="https://github.com/angusu-de/shapediff-ci/actions/workflows/ci.yml"><img src="https://github.com/angusu-de/shapediff-ci/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI-Spiegel"></a> <a href="https://github.com/IamAngusU/shapediff/releases/tag/v0.1.0a3"><img src="https://img.shields.io/badge/release-0.1.0a3-blue" alt="Release 0.1.0a3"></a></p>
+<p align="center"><a href="README.md"><img src="docs/assets/readme-language-en.svg" height="40" alt="Read this README in English"></a></p>
+
+<p align="center">
+  <a href="https://github.com/IamAngusU/shapediff/releases/tag/v0.1.0a4"><img src="docs/assets/readme/repo-release.svg" height="40" alt="Preview 0.1.0a4"></a>
+  <a href="pyproject.toml"><img src="docs/assets/readme/repo-runtime.svg" height="40" alt="Python 3.10 or newer"></a>
+  <a href="LICENSE"><img src="docs/assets/readme/repo-license.svg" height="40" alt="MIT license"></a>
+</p>
+
 
 # JSON-Antworten vergleichen, ohne ein Schema zu pflegen
 
@@ -8,14 +15,14 @@ ShapeDiff erkennt strukturelle Änderungen zwischen beobachteten API-Antworten. 
 
 **Lokal, ohne Account, ohne Telemetrie, ohne Laufzeit-Abhängigkeiten.** Benötigt Python ab 3.10.
 
-Das CI-Badge gehört zum [öffentlichen Spiegel](https://github.com/angusu-de/shapediff-ci), der denselben Commit auf Linux, Windows und macOS prüft. GitHub blockiert Actions auf `IamAngusU` derzeit wegen eines Abrechnungsproblems. [Messungen und geprüfter Commit](docs/metrics.md) sind dokumentiert.
+![ShapeDiff compares the included production and staging responses](docs/assets/terminal.png)
 
 ## Direkt starten
 
-Das [GitHub-Release](https://github.com/IamAngusU/shapediff/releases/tag/v0.1.0a3) enthält ein Wheel und die einzelne Datei `shapediff.py`. Mit [pipx](https://pipx.pypa.io/stable/installation/) landet der Befehl in einer eigenen Umgebung:
+Das [GitHub-Release](https://github.com/IamAngusU/shapediff/releases/tag/v0.1.0a4) enthält ein Wheel und die einzelne Datei `shapediff.py`. Mit [pipx](https://pipx.pypa.io/stable/installation/) landet der Befehl in einer eigenen Umgebung:
 
 ```sh
-pipx install 'https://github.com/IamAngusU/shapediff/releases/download/v0.1.0a3/shapediff-0.1.0a3-py3-none-any.whl'
+pipx install 'https://github.com/IamAngusU/shapediff/releases/download/v0.1.0a4/shapediff-0.1.0a4-py3-none-any.whl'
 shapediff production.json staging.json
 ```
 
@@ -36,13 +43,13 @@ INFO   user.avatar  added
 Für einen Download als Einzeiler:
 
 ```sh
-curl -fsSL https://github.com/IamAngusU/shapediff/releases/download/v0.1.0a3/shapediff.py -o shapediff.py && python3 shapediff.py production.json staging.json
+curl -fsSL https://github.com/IamAngusU/shapediff/releases/download/v0.1.0a4/shapediff.py -o shapediff.py && python3 shapediff.py production.json staging.json
 ```
 
 Unter Windows PowerShell:
 
 ```powershell
-Invoke-WebRequest -ErrorAction Stop 'https://github.com/IamAngusU/shapediff/releases/download/v0.1.0a3/shapediff.py' -OutFile shapediff.py; py -3 shapediff.py production.json staging.json
+Invoke-WebRequest -ErrorAction Stop 'https://github.com/IamAngusU/shapediff/releases/download/v0.1.0a4/shapediff.py' -OutFile shapediff.py; py -3 shapediff.py production.json staging.json
 ```
 
 Der Download speichert lesbaren Python-Code, ohne fremden Code direkt in die Shell zu leiten. Für CI bleibt die Version durch den Release-Link festgelegt.
@@ -130,3 +137,13 @@ python3 scripts/benchmark_suite.py --cases 100 --documents 100 --repetitions 8
 Die [Messübersicht](docs/metrics.md) nennt 115 bestandene Tests, lokale Laufzeiten und die Grenzen dieser Messungen. Die Rohdaten stehen in `docs/` als JSON. Weitere Details zu [Kompatibilität](docs/compatibility.md), [Sicherheit](docs/security.md) und [Benchmarkmethodik](docs/benchmark.md) sind in der englischen Dokumentation beschrieben.
 
 [English README](README.md) · [MIT-Lizenz](LICENSE) · © 2026 Angus Uelsmann
+
+## Warum nicht Optic, oasdiff oder Pact?
+
+[oasdiff](https://github.com/oasdiff/oasdiff) vergleicht OpenAPI-Verträge. [Optic](https://github.com/opticdev/optic) bietet OpenAPI-Linting, Diffing und Tests. Nutze sie, wenn dein Vertrag in OpenAPI liegt. [Pact](https://docs.pact.io/) prüft explizite Verbraucher-/Anbieter-Verträge mit passenden Tests.
+
+ShapeDiff braucht stattdessen beobachtete JSON-Antworten. Es passt zu undokumentierten Endpunkten, alten APIs und schnellen CI-Regressionschecks. Es kennt keine nicht beobachteten Antworten und keine Anforderungen deiner Clients. Ein unauffälliger Diff beweist deshalb keine Vertragskompatibilität; die Werkzeuge können sich ergänzen.
+
+[Build evidence](docs/metrics.md) · [Registry publication](docs/registry.md)
+
+<p align="center"><a href="https://github.com/IamAngusU/icon-marquee"><img src="docs/assets/stack-marquee.svg" width="760" alt="Python, JSON, GitHub and Linux"></a></p>
