@@ -1,41 +1,60 @@
 name: Publish reviewed PyPI release
 on:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Existing canonical GitHub release tag, e.g. v0.1.0a4
+        required: true
+        type: string
+      publish:
+        description: Upload the verified distributions to PyPI
+        default: false
+        type: boolean
 permissions:
   contents: read
+concurrency:
+  group: pypi-${{ inputs.release_tag }}
+  cancel-in-progress: false
 jobs:
-  build:
+  verify:
+    if: github.repository == 'angusu-de/shapediff-ci'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
+          path: publisher
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: IamAngusU/shapediff
+          ref: ${{ inputs.release_tag }}
+          path: source
           persist-credentials: false
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: '3.12'
-      - name: Require a version tag matching package metadata
+      - name: Verify tag, release hashes and distribution source
+        working-directory: source
         env:
-          RELEASE_REF: ${{ github.ref }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: python ../publisher/scripts/prepare_registry_release.py
+      - name: Test the selected source
+        working-directory: source
+        run: python -m unittest discover -s tests -v
+      - run: python -m pip install twine==7.0.0
+      - name: Check package metadata and an offline wheel installation
+        working-directory: source
         run: |
-          python - <<'PY'
-          import os, tomllib
-          with open('pyproject.toml', 'rb') as source:
-              version = tomllib.load(source)['project']['version']
-          assert os.environ['RELEASE_REF'] == 'refs/tags/v' + version, 'Dispatch on the reviewed version tag'
-          PY
-      - run: python -m unittest discover -s tests -v
-      - run: python -m pip install build twine
-      - run: python -m build
-      - run: python -m twine check dist/*
-      - run: python scripts/verify_wheel.py dist
+          python -m twine check dist/*
+          python scripts/verify_wheel.py dist
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: pypi-distributions
-          path: dist/*
+          path: source/dist/*
           if-no-files-found: error
   publish:
-    if: github.repository == 'IamAngusU/shapediff'
-    needs: build
+    if: github.repository == 'angusu-de/shapediff-ci' && inputs.publish
+    needs: verify
     runs-on: ubuntu-latest
     environment: pypi
     permissions:

@@ -1,19 +1,32 @@
 # PyPI publication
 
-The project is not on PyPI yet. The checked GitHub wheel and single-file release
-remain the supported installation routes; do not assume an identically named
-registry package is maintained by this project.
+Publishing uses PyPI Trusted Publishing, without a stored PyPI token. The exact
+publisher identity is:
 
-Before the first upload, create a PyPI account with two-factor authentication,
-confirm that `shapediff` is available, and create a pending Trusted Publisher:
-owner `IamAngusU`, repository `shapediff`, workflow `publish.yml`, environment
-`pypi`. Reserve a different name in package metadata first if the name is taken.
+- GitHub owner: `angusu-de`
+- Repository: `shapediff-ci`
+- Workflow filename: `publish.yml`
+- Environment: `pypi`
+- PyPI project: `shapediff`
 
-The manual workflow builds the wheel and sdist, checks their metadata, tests
-the source and installs the built wheel offline before an OIDC upload. It runs
-only on a version tag matching package metadata. Protect the `pypi` environment
-with a required reviewer and run it only for a reviewed immutable release tag.
-The runner account must be able to start Actions; a mirror is not automatically
-an authorized publisher. Configure the actual repository identity in PyPI.
+The public mirror runs the workflow because the canonical account's runners
+cannot currently start. Canonical product source remains `IamAngusU/shapediff`.
+The `pypi` environment permits only workflow runs from `main`.
+
+Dispatch `Publish reviewed PyPI release` on `main` with an existing canonical
+GitHub release tag. With `publish=false`, it verifies without uploading. With
+`publish=true`, it uploads after verification through OIDC.
+
+Verification checks the tag against package metadata and the canonical Git ref,
+downloads the exact wheel and sdist from that GitHub release, checks their
+published SHA-256 hashes and compares packaged Python code with the tagged
+source. It then runs the source tests, validates package metadata and installs
+the wheel offline into a fresh environment. The exact checked release files
+are uploaded; they are not rebuilt into different artifacts for PyPI.
+
+A pending publisher must be configured in the owning PyPI account before the
+first upload. Once used, it becomes the project's ordinary trusted publisher.
+The configuration permits future releases of this project through that same
+workflow and environment; remove it in PyPI to revoke the relationship.
 
 [PyPI Trusted Publishers](https://docs.pypi.org/trusted-publishers/adding-a-publisher/).
